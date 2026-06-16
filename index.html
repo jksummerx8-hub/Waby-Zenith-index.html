@@ -4,42 +4,69 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>頂峰之境 - 官方網站 | Official Website</title>
+    <!-- 引入 Tailwind CSS 進行基礎排版 -->
     <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        zenith: {
+                            dark: '#000000',
+                            card: '#0a0f1d',
+                            blue: '#3b82f6'
+                        }
+                    }
+                }
+            }
+        }
+    </script>
     <style>
-        /* 全局背景改成黑色 */
-        .gradient-bg { 
-            background: #000000; 
+        /* 🖤 背景顏色全面改成純黑色 */
+        body {
+            background-color: #000000 !important;
         }
         
-        /* 配合黑色背景，玻璃卡片調整為極具科技感的深色透明與藍色霓虹微邊框 */
-        .glass-card { 
-            background: rgba(15, 23, 42, 0.65); 
-            backdrop-filter: blur(12px); 
-            border: 1px solid rgba(56, 189, 248, 0.2); 
-        }
-        
-        .screenshot-img { 
-            height: 480px; 
-            width: auto; 
-            object-fit: contain; 
-            border-radius: 2rem; 
-        }
-        
-        .content-img { 
-            width: 100%; 
-            max-width: 450px; 
-            height: auto; 
-            object-fit: cover; 
-            border-radius: 1.5rem; 
+        /* 💙 字體顏色改成藍色調漸層 */
+        .gradient-text {
+            background: linear-gradient(135deg, #60a5fa 0%, #3b82f6 50%, #1d4ed8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: #3b82f6; /* 瀏覽器不支援時的備用色 */
         }
 
-        /* 自訂捲軸修改為科技藍色漸層 */
-        .custom-scrollbar::-webkit-scrollbar { 
-            height: 10px; 
+        .gradient-text-light {
+            background: linear-gradient(135deg, #93c5fd 0%, #60a5fa 50%, #2563eb 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            color: #60a5fa; /* 備用色 */
         }
-        .custom-scrollbar::-webkit-scrollbar-track { 
-            background: rgba(255, 255, 255, 0.05); 
-            border-radius: 9999px; 
+
+        /* 毛玻璃卡片微調 - 適配深色主題 */
+        .glass-card {
+            background: rgba(10, 15, 29, 0.75);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        /* 實機截圖高度定位 */
+        .screenshot-img {
+            height: 480px;
+            width: auto;
+            object-fit: contain;
+            border-radius: 2rem;
+        }
+
+        /* 🧬 藍色霓虹科技感自訂捲軸 */
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 10px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 9999px;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb {
             background: linear-gradient(to right, #3b82f6, #06b6d4);
@@ -47,348 +74,271 @@
             border: 2px solid #000000;
         }
         .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: linear-gradient(to right, #2563eb, #0891b2); 
+            background: linear-gradient(to right, #2563eb, #0891b2);
+        }
+
+        /* 語言切換隱藏標籤 */
+        .hidden-lang {
+            display: none !important;
         }
     </style>
 </head>
-<body class="gradient-bg text-blue-100 font-sans antialiased">
+<body class="font-sans antialiased selection:bg-blue-500/30">
 
-    <header class="max-w-7xl mx-auto px-6 py-4 flex justify-between items-center border-b border-blue-950 sticky top-0 z-50 backdrop-blur-md bg-black/40">
-        <div class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-blue-500">
-            頂峰之境
+    <!-- 頂部導覽列 (Navigation) -->
+    <nav class="fixed top-0 left-0 right-0 z-50 glass-card border-b border-blue-900/30">
+        <div class="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+            <!-- 名稱修改為 頂峰之境 -->
+            <div class="text-2xl font-bold tracking-wider gradient-text uppercase">
+                頂峰之境
+            </div>
+            <div class="flex items-center space-x-6">
+                <button onclick="toggleLang()" id="langBtn" class="px-4 py-1.5 rounded-full border border-blue-700 hover:border-blue-400 text-sm font-semibold transition-all duration-300 bg-slate-900/50 text-blue-400">
+                    English
+                </button>
+                <a href="https://apps.apple.com/tw/app/zenith-magic/id6758757008" target="_blank" class="hidden md:block bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white px-5 py-2 rounded-full text-sm font-semibold transition shadow-md shadow-blue-500/20">
+                    App Store
+                </a>
+            </div>
         </div>
-        <nav class="flex items-center space-x-6">
-            <button onclick="toggleLang()" id="langBtn" class="border border-blue-400 text-blue-400 px-4 py-1.5 rounded-full text-sm font-semibold hover:bg-blue-600 hover:text-white transition">
-                English
-            </button>
-            <button onclick="handleDownload(false)" class="hidden md:block bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white px-5 py-2 rounded-full text-sm font-semibold transition shadow-md">
-                App Store
-            </button>
-        </nav>
-    </header>
+    </nav>
 
-    <section class="max-w-5xl mx-auto text-center px-6 py-20 relative">
-        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-500/10 blur-[120px] rounded-full pointer-events-none"></div>
+    <!-- 主視覺形象區 (Hero Section) -->
+    <section class="relative pt-40 pb-24 px-6 overflow-hidden flex flex-col items-center text-center max-w-5xl mx-auto">
+        <!-- 背景炫光粒子微調 -->
+        <div class="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-blue-600/10 blur-[120px] rounded-full pointer-events-none"></div>
+        <div class="absolute top-1/3 left-1/3 w-[300px] h-[300px] bg-cyan-600/10 blur-[100px] rounded-full pointer-events-none"></div>
         
-        <h1 id="hero-title" class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-cyan-400 to-indigo-400 leading-tight">
-            強大源於呼吸
-        </h1>
-        <p id="hero-desc" class="text-lg md:text-xl text-blue-200 max-w-3xl mx-auto mb-10 leading-relaxed font-medium">
-            結合極致工藝與動態美學，開啟身心強化的「感官聖殿」。呼吸練習能在幾秒鐘內「暴力」中斷負面情緒、壓力與疲勞的連鎖反應，讓腦袋完全清空。
-        </p>
-        <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-12">
-            <button onclick="handleDownload(false)" id="btn-download" class="w-full sm:w-auto bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold px-8 py-4 rounded-2xl shadow-lg shadow-blue-500/20 transition transform hover:-translate-y-1">
-                立即下載 iOS 版
-            </button>
-            <a href="https://raw.githubusercontent.com/jksummerx8-hub/Terms-index.html-/refs/heads/main/Terms" target="_blank" id="btn-terms" class="w-full sm:w-auto bg-gradient-to-r from-slate-900 to-slate-800 hover:from-slate-800 hover:to-slate-700 text-blue-400 font-semibold px-8 py-4 rounded-2xl border border-blue-900/60 transition shadow-sm text-center">
-                服務條款
+        <!-- 中文語系 -->
+        <div class="lang-tw">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight gradient-text-light">
+                強大源於呼吸
+            </h1>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto mb-10 leading-relaxed font-medium gradient-text-light">
+                結合極致工藝與動態美學，開啟身心強化的「感官聖殿」。呼吸練習能在幾秒鐘內「暴力」中斷負面情緒、壓力與疲勞的連鎖反應，讓腦袋完全清空。
+            </p>
+        </div>
+        
+        <!-- 英文語系 -->
+        <div class="lang-en hidden-lang">
+            <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 leading-tight gradient-text-light">
+                Strength from Within
+            </h1>
+            <p class="text-lg md:text-xl max-w-3xl mx-auto mb-10 leading-relaxed font-medium gradient-text-light">
+                Combining ultimate craftsmanship and dynamic aesthetics, opening a "sensory sanctuary" for body and mind enhancement. Breathing exercises can "violently" interrupt the chain reaction of negative emotions, stress, and fatigue within seconds, clearing your mind completely.
+            </p>
+        </div>
+
+        <!-- 下載與條款連結區 -->
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4 mb-12 w-full sm:w-auto">
+            <a href="https://apps.apple.com/tw/app/zenith-magic/id6758757008" target="_blank" id="btn-download" class="w-full sm:w-auto bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-bold px-8 py-4 rounded-2xl shadow-lg shadow-blue-500/20 transition transform hover:-translate-y-1 text-center">
+                <span class="lang-tw">立即下載 iOS 版</span>
+                <span class="lang-en hidden-lang">Download for iOS</span>
             </a>
-            <a href="https://jksummerx8-hub.github.io/Facial-Scan-and-Biometric-Data-Privacy-Statement/" target="_blank" id="btn-bio" class="w-full sm:w-auto bg-gradient-to-r from-slate-900 to-slate-800 hover:from-slate-800 hover:to-slate-700 text-blue-400 font-semibold px-8 py-4 rounded-2xl border border-blue-900/60 transition shadow-sm text-center">
-                臉部技術與生物特徵聲明
+            <a href="https://raw.githubusercontent.com/jksummerx8-hub/Terms-index.html-/refs/heads/main/Terms" target="_blank" class="w-full sm:w-auto bg-slate-900/80 hover:bg-slate-800 text-blue-400 font-semibold px-8 py-4 rounded-2xl border border-blue-900/50 transition shadow-sm text-center">
+                <span class="lang-tw">服務條款</span>
+                <span class="lang-en hidden-lang">Terms of Service</span>
+            </a>
+            <a href="https://jksummerx8-hub.github.io/Facial-Scan-and-Biometric-Data-Privacy-Statement/" target="_blank" class="w-full sm:w-auto bg-slate-900/80 hover:bg-slate-800 text-blue-400 font-semibold px-8 py-4 rounded-2xl border border-blue-900/50 transition shadow-sm text-center">
+                <span class="lang-tw">臉部技術與生物特徵聲明</span>
+                <span class="lang-en hidden-lang">Biometric Privacy Statement</span>
             </a>
         </div>
     </section>
 
-    <section class="py-6 px-4 max-w-7xl mx-auto">
-        <div id="gallery-title" class="text-center text-2xl font-bold mb-8 text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400">
-            App 實機介面展示 | Interface Gallery
+    <!-- App 實機介面展示橫向滑動區 (Gallery) -->
+    <section class="py-12 px-4 max-w-7xl mx-auto">
+        <div class="text-center text-2xl font-bold mb-8 gradient-text">
+            <span class="lang-tw">App 實機介面展示</span>
+            <span class="lang-en hidden-lang">Interface Gallery</span>
         </div>
+        
         <div class="flex overflow-x-auto gap-6 pb-6 px-4 custom-scrollbar">
+            <!-- 1. 察覺系統 -->
             <div class="flex-none text-center mb-4">
-                <img src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith-Magic/refs/heads/main/%E5%AF%9F%E8%A6%BA%E7%B3%BB%E7%B5%B1.png" class="screenshot-img shadow-xl border border-blue-950" alt="察覺系統">
-                <p class="mt-4 font-semibold text-blue-300 gallery-label" data-zh="察覺系統:映照心靈的濾鏡" data-en="Awareness System: Mirror of the Soul">
-                    察覺系統:映照心靈的濾鏡
-                </p>
+                <img src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith-Magic/refs/heads/main/%E5%AF%9F%E8%A6%BA%E7%B3%BB%E7%B5%B1.png" class="screenshot-img shadow-2xl border border-blue-900/30" alt="察覺系統">
+                <p class="mt-4 font-semibold gradient-text gallery-label" data-zh="察覺系統：映照心靈的濾鏡" data-en="Awareness System: Mirror of the Soul">察覺系統：映照心靈的濾鏡</p>
             </div>
+            <!-- 2. 核心介面 (Zenith Magic 改為 頂峰之境) -->
             <div class="flex-none text-center mb-4">
-                <img src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith-Magic/refs/heads/main/Zenith.png" class="screenshot-img shadow-xl border border-blue-950" alt="頂峰之境">
-                <p class="mt-4 font-semibold text-blue-300 gallery-label" data-zh="頂峰之境 核心介面" data-en="頂峰之境 Core Interface">
-                    頂峰之境 核心介面
-                </p>
+                <img src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith-Magic/refs/heads/main/Zenith.png" class="screenshot-img shadow-2xl border border-blue-900/30" alt="頂峰之境核心介面">
+                <p class="mt-4 font-semibold gradient-text gallery-label" data-zh="頂峰之境 核心介面" data-en="頂峰之境 Core Interface">頂峰之境 核心介面</p>
             </div>
+            <!-- 3. 健身計時器 -->
             <div class="flex-none text-center mb-4">
-                <img src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith-Magic/refs/heads/main/Simulator%20Screenshot%20-%20iPhone%2017%20Pro%20-%202026-05-31%20at%2002.07.31.png" class="screenshot-img shadow-xl border border-blue-950" alt="健身計時器">
-                <p class="mt-4 font-semibold text-blue-300 gallery-label" data-zh="健身計時器" data-en="Fitness Timer">
-                    健身計時器
-                </p>
+                <img src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith-Magic/refs/heads/main/Simulator%20Screenshot%20-%20iPhone%2017%20Pro%20-%202026-05-31%20at%2002.07.31.png" class="screenshot-img shadow-2xl border border-blue-900/30" alt="健身計時器">
+                <p class="mt-4 font-semibold gradient-text gallery-label" data-zh="健身計時器" data-en="Fitness Timer">健身計時器</p>
             </div>
+            <!-- 4. 引導冥想課程 -->
             <div class="flex-none text-center mb-4">
-                <img src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith-Magic/refs/heads/main/Simulator%20Screenshot%20-%20iPhone%2017%20Pro%20-%202026-05-31%20at%2002.06.01.png" class="screenshot-img shadow-xl border border-blue-950" alt="引導冥想課程">
-                <p class="mt-4 font-semibold text-blue-300 gallery-label" data-zh="引導冥想課程" data-en="Guided Meditation Course">
-                    引導冥想課程
-                </p>
+                <img src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith-Magic/refs/heads/main/Simulator%20Screenshot%20-%20iPhone%2017%20Pro%20-%202026-05-31%20at%2002.06.01.png" class="screenshot-img shadow-2xl border border-blue-900/30" alt="引導冥想課程">
+                <p class="mt-4 font-semibold gradient-text gallery-label" data-zh="引導冥想課程" data-en="Guided Meditation Course">引導冥想課程</p>
             </div>
+            <!-- 5. ASMR 感官音效控制 -->
             <div class="flex-none text-center mb-4">
-                <img src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith-Magic/refs/heads/main/Simulator%20Screenshot%20-%20iPhone%2017%20Pro%20-%202026-05-31%20at%2002.05.37.png" class="screenshot-img shadow-xl border border-blue-950" alt="ASMR 感官音效控制">
-                <p class="mt-4 font-semibold text-blue-300 gallery-label" data-zh="ASMR 感官音效控制" data-en="ASMR Sensory Sound Control">
-                    ASMR 感官音效控制
-                </p>
+                <img src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith-Magic/refs/heads/main/Simulator%20Screenshot%20-%20iPhone%2017%20Pro%20-%202026-05-31%20at%2002.05.37.png" class="screenshot-img shadow-2xl border border-blue-900/30" alt="ASMR感官音效控制">
+                <p class="mt-4 font-semibold gradient-text gallery-label" data-zh="ASMR 感官音效控制" data-en="ASMR Sensory Sound Control">ASMR 感官音效控制</p>
             </div>
+            <!-- 6. 健身流倒數計時器 -->
             <div class="flex-none text-center mb-4">
-                <img src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith-Magic/refs/heads/main/Simulator%20Screenshot%20-%20iPhone%2017%20Pro%20-%202026-05-31%20at%2002.05.24.png" class="screenshot-img shadow-xl border border-blue-950" alt="健身流倒數計時器">
-                <p class="mt-4 font-semibold text-blue-300 gallery-label" data-zh="健身流倒數計時器" data-en="Fitness Flow Countdown Timer">
-                    健身流倒數計時器
-                </p>
+                <img src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith-Magic/refs/heads/main/Simulator%20Screenshot%20-%20iPhone%2017%20Pro%20-%202026-05-31%20at%2002.05.24.png" class="screenshot-img shadow-2xl border border-blue-900/30" alt="健身流倒數計時器">
+                <p class="mt-4 font-semibold gradient-text gallery-label" data-zh="健身流倒數計時器" data-en="Fitness Flow Countdown Timer">健身流倒數計時器</p>
             </div>
+            <!-- 7. 動態呼吸引導 -->
             <div class="flex-none text-center mb-4">
-                <img src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith-Magic/refs/heads/main/Simulator%20Screenshot%20-%20iPhone%2017%20Pro%20-%202026-05-31%20at%2002.05.00.png" class="screenshot-img shadow-xl border border-blue-950" alt="動態呼吸引導">
-                <p class="mt-4 font-semibold text-blue-300 gallery-label" data-zh="動態呼吸引導" data-en="Dynamic Breathing Guide">
-                    動態呼吸引導
-                </p>
+                <img src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith-Magic/refs/heads/main/Simulator%20Screenshot%20-%20iPhone%2017%20Pro%20-%202026-05-31%20at%2002.05.00.png" class="screenshot-img shadow-2xl border border-blue-900/30" alt="動態呼吸引導">
+                <p class="mt-4 font-semibold gradient-text gallery-label" data-zh="動態呼吸引導" data-en="Dynamic Breathing Guide">動態呼吸引導</p>
             </div>
+            <!-- 8. 神聖祈禱文顯化 -->
             <div class="flex-none text-center mb-4">
-                <img src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith-Magic/refs/heads/main/Simulator%20Screenshot%20-%20iPhone%2017%20Pro%20-%202026-04-09%20at%2019.11.40.png" class="screenshot-img shadow-xl border border-blue-950" alt="神聖祈禱文顯化">
-                <p class="mt-4 font-semibold text-blue-300 gallery-label" data-zh="神聖祈禱文顯化" data-en="Sacred Prayer Manifestation">
-                    神聖祈禱文顯化
-                </p>
+                <img src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith-Magic/refs/heads/main/Simulator%20Screenshot%20-%20iPhone%2017%20Pro%20-%202026-04-09%20at%2019.11.40.png" class="screenshot-img shadow-2xl border border-blue-900/30" alt="神聖祈禱文顯化">
+                <p class="mt-4 font-semibold gradient-text gallery-label" data-zh="神聖祈禱文顯化" data-en="Sacred Prayer Manifestation">神聖祈禱文顯化</p>
+            </div>
+            <!-- 9. 7段自訂等化器(EQ) -->
+            <div class="flex-none text-center mb-4">
+                <img src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith-Magic/refs/heads/main/Simulator%20Screenshot%20-%20iPhone%2017%20Pro%20-%202026-04-08%20at%2014.35.19.png" class="screenshot-img shadow-2xl border border-blue-900/30" alt="7段自訂等化器">
+                <p class="mt-4 font-semibold gradient-text gallery-label" data-zh="7段自訂等化器(EQ)" data-en="7-Band Custom Equalizer (EQ)">7段自訂等化器(EQ)</p>
+            </div>
+            <!-- 10. 朝聖系統:祈禱文 -->
+            <div class="flex-none text-center mb-4">
+                <img src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith-Magic/refs/heads/main/Simulator%20Screenshot%20-%20iPhone%2017%20Pro%20-%202026-05-31%20at%2002.04.09.png" class="screenshot-img shadow-2xl border border-blue-900/30" alt="朝聖系統">
+                <p class="mt-4 font-semibold gradient-text gallery-label" data-zh="朝聖系統:祈禱文" data-en="Pilgrimage System: Prayers">朝聖系統:祈禱文</p>
+            </div>
+            <!-- 11. 呼吸應用時機與場景 -->
+            <div class="flex-none text-center mb-4">
+                <img src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith-Magic/refs/heads/main/Simulator%20Screenshot%20-%20iPhone%2017%20Pro%20-%202026-01-22%20at%2001.22.21.png" class="screenshot-img shadow-2xl border border-blue-900/30" alt="呼吸應用場景">
+                <p class="mt-4 font-semibold gradient-text gallery-label" data-zh="呼吸應用時機與場景" data-en="Breathing Application Timing & Scenes">呼吸應用時機與場景</p>
             </div>
         </div>
     </section>
 
-    <section class="py-16 px-6 max-w-6xl mx-auto">
-        <h2 class="text-3xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 mb-2 lang-txt" data-zh="一、核心特色:科技與美學的結晶" data-en="I. Core Features: Crystallization of Tech & Aesthetics">
-            一、核心特色:科技與美學的結晶
-        </h2>
-        <div class="w-20 h-1 bg-gradient-to-r from-blue-500 to-cyan-500 mb-12 rounded-full"></div>
+    <!-- 核心特色機制 (Features Area) -->
+    <section class="max-w-6xl mx-auto px-6 py-20 grid md:grid-cols-2 gap-12 items-center">
+        <div>
+            <div class="lang-tw">
+                <span class="text-blue-400 font-medium tracking-widest uppercase text-sm block mb-2">精心雕琢的互動系統</span>
+                <h2 class="text-3xl font-bold mb-6 gradient-text">沉浸式呼吸與覺察機制</h2>
+                <p class="leading-relaxed mb-6 gradient-text-light font-medium">我們打破傳統冥想 App 的枯燥框架，將動態貝茲曲線與高精密狀態機融入每一次的指尖觸碰。隨時隨地，開啟屬於你的心靈綠洲。</p>
+            </div>
+            <div class="lang-en hidden-lang">
+                <span class="text-blue-400 font-medium tracking-widest uppercase text-sm block mb-2">Exquisite Interactive System</span>
+                <h2 class="text-3xl font-bold mb-6 gradient-text">Immersive Breathing & Mindfulness</h2>
+                <p class="leading-relaxed mb-6 gradient-text-light font-medium">Breaking away from generic mindfulness tools, we integrate dynamic bezier curves and high-precision state machines into every touch. Access your mental oasis anytime, anywhere.</p>
+            </div>
+        </div>
+        <div class="grid grid-cols-2 gap-4">
+            <div class="p-2 glass-card rounded-2xl transform hover:scale-[1.02] transition-all duration-300">
+                <img src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith-Magic/refs/heads/main/%E5%AF%9F%E8%A6%BA%E7%B3%BB%E7%B5%B1.png" alt="最強呼吸" class="w-full h-auto rounded-xl object-cover" onerror="this.src='https://placehold.co/400x600/0a172a/3b82f6?text=頂峰之境'">
+                <p class="text-center text-xs mt-2 lang-tw gradient-text">最強呼吸系統</p>
+                <p class="text-center text-xs mt-2 lang-en hidden-lang gradient-text">Max Breathing</p>
+            </div>
+            <div class="p-2 glass-card rounded-2xl transform hover:scale-[1.02] transition-all duration-300 mt-6">
+                <img src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith-Magic/refs/heads/main/Zenith.png" alt="核心察覺" class="w-full h-auto rounded-xl object-cover" onerror="this.src='https://placehold.co/400x600/0a172a/3b82f6?text=頂峰之境'">
+                <p class="text-center text-xs mt-2 lang-tw gradient-text">核心察覺系統</p>
+                <p class="text-center text-xs mt-2 lang-en hidden-lang gradient-text">Mindfulness System</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- 修行訂閱方案區 (Pricing Plans) -->
+    <section class="max-w-4xl mx-auto px-6 py-20 border-t border-blue-950">
+        <div class="text-center mb-12">
+            <h2 class="text-3xl font-bold mb-4 lang-tw gradient-text">選擇您的修行方案</h2>
+            <h2 class="text-3xl font-bold mb-4 lang-en hidden-lang gradient-text">Choose Your Plan</h2>
+        </div>
         
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20">
-            <div class="space-y-6">
-                <div class="inline-block bg-blue-950 text-blue-400 px-3 py-1 rounded-full text-sm font-bold lang-txt" data-zh="大腦停不下來嗎?" data-en="Racing Non-Stop?">
-                    大腦停不下來嗎?
-                </div>
-                <h3 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-cyan-300 lang-txt" data-zh="把放鬆當成一種可以習得的技能" data-en="Treat Relaxation as a Learnable Skill">
-                    把放鬆當成一種可以習得的技能
-                </h3>
-                <p class="text-blue-200 leading-relaxed lang-txt" data-zh="每晚躺在床上,閉上眼睛,腦海中卻像放電影一樣不停閃現:未完成的工作、今天遇到的麻煩、甚至剛剛滑過的短影音片段...... 「頂峰之境」不只是一個簡單的鬧鐘 or 放鬆軟體。我們知道,睡前放鬆,本身就是一種需要被練習的技能。「頂峰之境」是一個全方位的、個性化的身心重啟引擎,我們將聽覺療癒、呼吸練習、冥想和健身流無縫整合,幫助你重新建立與大腦的連結,掌握放鬆的能力,透過呼吸練習讓腦袋清空。" data-en="Lying in bed each night, closing your eyes, yet your mind replays scenes like a movie: unfinished work, troubles from today, even short videos you just swiped past... '頂峰之境' is not just a simple alarm or relaxation app. We know that wind-down relaxation itself is a skill that needs practice. '頂峰之境' is a comprehensive, personalized body-mind reboot engine. We seamlessly integrate audio healing, breathing practices, meditation, and fitness flows to help you reconnect with your brain, master the art of letting go, and clear your head through targeted breathwork.">
-                    每晚躺在床上,閉上眼睛,腦海中卻像放電影一樣不停閃現:未完成的工作、今天遇到的麻煩、甚至剛剛滑過的短影音片段......「頂峰之境」不只是一個簡單的鬧鐘 or 放鬆軟體。我們知道,睡前放鬆,本身就是一種需要被練習的技能。頂峰之境 是一個全方位的、個性化的身心重啟引擎,我們將聽覺療癒、呼吸練習、冥想和健身流無縫整合,幫助你重新建立與大腦的連結,掌握放鬆的能力,透過呼吸練習讓腦袋清空。
-                </p>
-            </div>
-            <div class="flex justify-center">
-                <img src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith-Magic/refs/heads/main/%E6%98%9F%E8%BE%B0%E6%BC%82%E6%B5%AE%E5%91%BC%E5%90%B8.png" class="content-img shadow-2xl border border-blue-950" alt="星塵漂浮呼吸">
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-20">
-            <div class="glass-card rounded-2xl p-6 shadow-sm hover:shadow-md transition">
-                <div class="text-blue-400 text-2xl mb-3">🎨</div>
-                <h4 class="text-lg font-bold mb-2 text-blue-300 lang-txt" data-zh="定製貝茲曲線動畫" data-en="Custom Bézier Animation">定製貝茲曲線動畫</h4>
-                <p class="text-sm text-blue-200 leading-relaxed lang-txt" data-zh="視覺動態並非機械運作，而是透過精密的數學曲線模擬肺部擴張的流暢美感，讓視覺引導成為一種美的享受。" data-en="Visual dynamics are not mechanical; they mimic the fluid beauty of lung expansion via precise mathematical curves, making visual guidance a joyful art.">視覺動態並非機械運作，而是透過精密的數學曲線模擬肺部擴張的流暢美感，讓視覺引導成為一種美的享受。</p>
-            </div>
-            <div class="glass-card rounded-2xl p-6 shadow-sm hover:shadow-md transition">
-                <div class="text-blue-400 text-2xl mb-3">⚙️</div>
-                <h4 class="text-lg font-bold mb-2 text-blue-300 lang-txt" data-zh="精確狀態機引擎" data-en="Precise State Machine">精確狀態機引擎</h4>
-                <p class="text-sm text-blue-200 leading-relaxed lang-txt" data-zh="核心計時器精確控制「吸氣、屏氣、呼氣」的毫秒級切換，提供極致穩定的引導節奏。" data-en="The core timer precisely controls millisecond-level switching between 'inhale, hold, exhale', delivering an exceptionally stable guidance rhythm.">核心計時器精確控制「吸氣、屏氣、呼氣」的毫秒級切換，提供極致穩定的引導節奏。</p>
-            </div>
-            <div class="glass-card rounded-2xl p-6 shadow-sm hover:shadow-md transition">
-                <div class="text-blue-400 text-2xl mb-3">🎵</div>
-                <h4 class="text-lg font-bold mb-2 text-blue-300 lang-txt" data-zh="專業音訊引擎與EQ" data-en="Professional Audio Engine & EQ">專業音訊引擎與EQ</h4>
-                <p class="text-sm text-blue-200 leading-relaxed lang-txt" data-zh="支援多通道 ASMR 聲景融合與 7 段等化器調節，量身打造最適合您的療癒頻率。" data-en="Supports multi-channel ASMR soundscape mixing and 7-band EQ adjustments, tailoring the healing frequencies best suited for you.">支援多通道 ASMR 聲景融合與 7 段等化器調節，量身打造最適合您的療癒頻率。</p>
-            </div>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center mb-20 md:grid-flow-col-dense">
-            <div class="space-y-6 md:col-start-2">
-                <div class="inline-block bg-blue-950 text-blue-400 px-3 py-1 rounded-full text-sm font-bold lang-txt" data-zh="追求極致的你" data-en="Pursuing the Ultimate">
-                    追求極致的你
-                </div>
-                <h3 class="text-2xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-blue-300 to-cyan-300 lang-txt" data-zh="專為強者打造的身心修煉聖殿" data-en="Body-Mind Cultivation Temple Built for the Strong">
-                    專為強者打造的身心修煉聖殿
-                </h3>
-                <p class="text-blue-200 leading-relaxed lang-txt" data-zh="「變強」不只是體能的堆疊，更是對內在節奏的絕對掌控。頂峰之境 誕生的使命，是將枯燥的呼吸練習轉化為一場視覺與聽覺的藝術盛宴。我們認為，當練習變成一種享受時，進步將無聲無息地發生。透過如電影般深邃的「彩色鑲嵌玻璃」視覺藝術，我們在數位世界中為您築起一座修煉強大的聖殿。在這裡，每一次吸氣都是能量的累積，每一次吐氣都是對極限的擴張，是一款高品質的舒壓藝術品。" data-en="'Becoming stronger' isn't just about physical stacking; it is absolute mastery over your internal tempo. '頂峰之境' was born with the mission to transform mundane breathwork into a visual and auditory feast. We believe that when practice becomes a pleasure, progress happens silently. Through deep cinematic 'stained glass' visual arts, we build a sanctuary for your strength cultivation in the digital world. Here, every inhalation accumulates power; every exhalation expands limits. A premium stress-relief artwork.">
-                    「變強」不只是體能的堆疊，幕後更是對內在節奏的絕對掌控。頂峰之境 誕生的使命，是將枯燥的呼吸練習轉化為一場視覺與聽覺的藝術盛宴。我們認為，當練習變成一種享受時，進步將無聲無息地發生。透過如電影般深邃的「彩色鑲嵌玻璃」視覺藝術，我們在數位世界中為您築起一座修煉強大的聖殿。在這裡，每一次吸氣都是能量的累積，每一次吐氣都是對極限的擴張，是一款高品質的舒壓藝術品。
-                </p>
-                <div class="flex flex-wrap gap-3">
-                    <span class="bg-blue-950 text-blue-300 px-4 py-2 rounded-full text-sm font-medium border border-blue-900/40 lang-txt" data-zh="找回內在平衡" data-en="Find Inner Balance">找回內在平衡</span>
-                    <span class="bg-blue-950 text-blue-300 px-4 py-2 rounded-full text-sm font-medium border border-blue-900/40 lang-txt" data-zh="過濾雜訊" data-en="Filter Out Noise">過濾雜訊</span>
-                    <span class="bg-blue-950 text-blue-300 px-4 py-2 rounded-full text-sm font-medium border border-blue-900/40 lang-txt" data-zh="找回呼吸的律動" data-en="Reclaim Breath Rhythm">找回呼吸的律動</span>
-                </div>
-            </div>
-            <div class="flex justify-center md:col-start-1">
-                <img src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith-Magic/refs/heads/main/%E6%9C%80%E5%BC%B7%E5%11%BC%E5%90%B8.png" class="content-img shadow-2xl border border-blue-950" alt="最強呼吸">
-            </div>
-        </div>
-    </section>
-
-    <section class="py-16 px-6 max-w-7xl mx-auto border-t border-blue-950">
-        <h2 id="pricing-title" class="text-3xl font-bold text-center text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 mb-12">
-            二、方案與定價
-        </h2>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="glass-card rounded-3xl p-8 flex flex-col justify-between border border-blue-900/40 shadow-xl relative overflow-hidden">
+        <div class="grid md:grid-cols-2 gap-8 max-w-2xl mx-auto">
+            <!-- 基礎免費版 -->
+            <div class="p-8 rounded-2xl glass-card flex flex-col justify-between">
                 <div>
-                    <h3 id="plan-weekly" class="text-xl font-bold text-blue-300 mb-2">週訂閱</h3>
-                    <div id="price-weekly" class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 mb-4">NT$ 150 / 週</div>
-                    <p id="desc-weekly" class="text-sm text-blue-200 leading-relaxed">適合短期衝刺、高壓專案期。隨時可取消，無負擔體驗完整功能。</p>
+                    <h3 class="text-xl font-bold mb-2 lang-tw gradient-text">基礎體驗</h3>
+                    <h3 class="text-xl font-bold mb-2 lang-en hidden-lang gradient-text">Basic Experience</h3>
+                    <div class="text-2xl font-bold mb-4 gradient-text">Free</div>
+                    <ul class="text-sm space-y-2 mb-6 gradient-text-light font-medium">
+                        <li class="lang-tw">✓ 核心呼吸練習</li>
+                        <li class="lang-en hidden-lang">✓ Core breathing exercises</li>
+                        <li class="lang-tw">✓ 基礎 ASMR 音效</li>
+                        <li class="lang-en hidden-lang">✓ Basic ASMR sounds</li>
+                    </ul>
                 </div>
-                <button onclick="handleDownload(false)" class="mt-8 block w-full text-center bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-bold py-3 px-4 rounded-xl text-sm transition shadow-md">
-                    立即訂閱
+                <button onclick="handleDownload()" class="w-full py-2.5 rounded-xl bg-slate-900 border border-blue-900/50 hover:bg-slate-800 font-medium transition text-sm text-blue-400">
+                    <span class="lang-tw">開始使用</span>
+                    <span class="lang-en hidden-lang">Get Started</span>
                 </button>
             </div>
-            <div class="glass-card rounded-3xl p-8 flex flex-col justify-between border-2 border-blue-500 shadow-2xl relative overflow-hidden transform md:-translate-y-4">
-                <div class="absolute top-0 right-0 bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xs font-bold px-4 py-1 rounded-bl-xl">熱門首選</div>
+
+            <!-- 高級訂閱版 (Zenith Access 改為 頂峰訂閱) -->
+            <div class="p-8 rounded-2xl glass-card border border-blue-500/40 relative flex flex-col justify-between">
+                <div class="absolute -top-3 right-4 px-3 py-1 bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-xs font-bold rounded-full">RECOMMENDED</div>
                 <div>
-                    <h3 id="plan-yearly" class="text-xl font-bold text-blue-300 mb-2">年訂閱</h3>
-                    <div id="price-yearly" class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 mb-4">NT$ 990 / 年</div>
-                    <p id="desc-yearly" class="text-sm text-blue-200 leading-relaxed">最具性價比的長期修煉方案。每天不到 3 元，全面建立身心平衡規律。</p>
+                    <h3 class="text-xl font-bold mb-2 lang-tw gradient-text">頂峰訂閱</h3>
+                    <h3 class="text-xl font-bold mb-2 lang-en hidden-lang gradient-text">頂峰之境 Access</h3>
+                    <div class="text-2xl font-bold mb-4 gradient-text">NT$ 150 <span class="text-sm font-normal text-slate-500">/ 月</span></div>
+                    <ul class="text-sm space-y-2 mb-6 gradient-text-light font-medium">
+                        <li class="lang-tw">✓ 解鎖所有進階課程</li>
+                        <li class="lang-en hidden-lang">✓ Unlock all premium courses</li>
+                        <li class="lang-tw">✓ 獨家客製化 EQ 等化器</li>
+                        <li class="lang-en hidden-lang">✓ Exclusive custom EQ</li>
+                        <li class="lang-tw">✓ 高精密生物特徵連動</li>
+                        <li class="lang-en hidden-lang">✓ Biometric integration</li>
+                    </ul>
                 </div>
-                <button onclick="handleDownload(false)" class="mt-8 block w-full text-center bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold py-3 px-4 rounded-xl text-sm transition shadow-lg">
-                    立即訂閱
-                </button>
-            </div>
-            <div class="glass-card rounded-3xl p-8 flex flex-col justify-between border border-blue-900/40 shadow-xl relative overflow-hidden">
-                <div>
-                    <h3 id="plan-lifetime" class="text-xl font-bold text-blue-300 mb-2">終身授權</h3>
-                    <div id="price-lifetime" class="text-3xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-cyan-400 mb-4">NT$ 2,290</div>
-                    <p id="desc-lifetime" class="text-sm text-blue-200 leading-relaxed">一次入主，終身隨行。享有未來所有功能免費升級與全新內容解鎖。</p>
-                </div>
-                <button onclick="handleDownload(true)" class="mt-8 block w-full text-center bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-700 hover:to-cyan-700 text-white font-bold py-3 px-4 rounded-xl text-sm transition shadow-md">
-                    立即購買
+                <button onclick="handleDownload()" class="w-full py-2.5 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 font-medium transition text-sm text-white shadow-lg shadow-blue-500/20">
+                    <span class="lang-tw">立即訂閱</span>
+                    <span class="lang-en hidden-lang">Subscribe Now</span>
                 </button>
             </div>
         </div>
     </section>
 
-    <footer class="bg-slate-950 text-slate-400 py-12 px-6 border-t border-blue-950 text-center">
-        <div class="max-w-4xl mx-auto space-y-6">
-            <p id="footer-desc" class="text-sm max-w-2xl mx-auto leading-relaxed">
-                頂峰之境 是一款革命性的正念與專注力提升軟體，致力於將美學、科技與呼吸科學完美結合。
-            </p>
-            <p id="footer-quote" class="text-xs italic text-cyan-400 font-medium">
-                「當你說出這些話時，你正在重構你的現實。」
-            </p>
-            <p id="footer-disclaimer" class="text-xs text-slate-600 font-medium">
-                * 本技術非醫療診斷，涉及醫療決策請諮詢專業醫師。
-            </p>
-            <div class="text-xs font-semibold text-slate-500">
-                <span id="footer-contact">聯絡支援：</span>
-                <a href="mailto:support@zenithmagic.com" class="text-blue-400 hover:underline">support@zenithmagic.com</a>
-            </div>
-            <p class="text-xs text-slate-600 font-medium pt-4">&copy; 2026 頂峰之境. All rights reserved.</p>
+    <!-- 頁尾區 (Footer) -->
+    <footer class="max-w-6xl mx-auto px-6 py-12 border-t border-blue-950 flex flex-col sm:flex-row justify-between items-center text-sm gap-4">
+        <div class="gradient-text">© 2026 頂峰之境. All rights reserved.</div>
+        <div class="flex gap-6">
+            <a href="https://raw.githubusercontent.com/jksummerx8-hub/Terms-index.html-/refs/heads/main/Terms" target="_blank" class="text-blue-500 hover:text-blue-400 transition">服務條款</a>
+            <a href="https://jksummerx8-hub.github.io/Facial-Scan-and-Biometric-Data-Privacy-Statement/" target="_blank" class="text-blue-500 hover:text-blue-400 transition">隱私聲明</a>
         </div>
     </footer>
 
+    <!-- 全功能的控制指令邏輯 (JavaScript) -->
     <script>
         let currentLang = 'zh';
-        
-        const trans = {
-            zh: {
-                heroTitle: "強大源於呼吸",
-                heroDesc: "結合極致工藝與動態美學，開啟身心強化的「感官聖殿」。呼吸練習能在幾秒鐘內「暴力」中斷負面情緒、壓力與疲勞的連鎖反應，讓腦袋完全清空。",
-                btnDownload: "立即下載 iOS 版",
-                btnTerms: "服務條款",
-                btnBio: "臉部技術與生物特徵聲明",
-                galleryTitle: "App 實機介面展示 | Interface Gallery",
-                featureTitle: "一、核心特色:科技與美學的結晶",
-                pricingTitle: "二、方案與定價",
-                planWeekly: "週訂閱",
-                planYearly: "年訂閱",
-                planLifetime: "終身授權",
-                priceWeekly: "NT$ 150 / 週",
-                priceYearly: "NT$ 990 / 年",
-                priceLifetime: "NT$ 2,290",
-                descWeekly: "適合短期衝刺、高壓專案期。隨時可取消，無負擔體驗完整功能。",
-                descYearly: "最具性價比的長期修煉方案。每天不到 3 元，全面建立身心平衡規律。",
-                descLifetime: "一次入主，終身隨行。享有未來所有功能免費升級與全新內容解鎖。",
-                btnSubscribe: "立即訂閱",
-                btnBuyNow: "立即購買",
-                footerDesc: "頂峰之境 是一款革命性的正念與專注力提升軟體，致力於將美學、科技與呼吸科學完美結合。",
-                quote: "「當你說出這些話時，你正在重構你的現實。」",
-                disclaimer: "* 本技術非醫療診斷，涉及醫療決策請諮詢專業醫師。",
-                contact: "聯絡支援：",
-                langBtn: "English"
-            },
-            en: {
-                heroTitle: "Strength From Breath",
-                heroDesc: "Merging exquisite craftsmanship with dynamic aesthetics to unlock a 'sensory sanctuary' for mental and physical reinforcement. Breathwork can violently interrupt negative emotions, stress, and fatigue loop in seconds, completely clearing your mind.",
-                btnDownload: "Download iOS Version",
-                btnTerms: "Terms of Service",
-                btnBio: "Facial Tech & Biometric Data Statement",
-                galleryTitle: "App Interface Gallery",
-                featureTitle: "I. Core Features: Tech & Aesthetics",
-                pricingTitle: "II. Plans & Pricing",
-                planWeekly: "Weekly Subscription",
-                planYearly: "Yearly Subscription",
-                planLifetime: "Lifetime Access",
-                priceWeekly: "$4.99 / Week",
-                priceYearly: "$29.99 / Year",
-                priceLifetime: "$69.99",
-                descWeekly: "Perfect for short-term sprints or high-stress project cycles. Cancel anytime, risk-free access to all premium features.",
-                descYearly: "Most cost-effective long-term refinement plan. Less than $0.10 a day to establish body-mind balance routines.",
-                descLifetime: "Pay once, endure forever. Entitled to all future upgrades, features, and exclusive content additions permanently.",
-                btnSubscribe: "Subscribe Now",
-                btnBuyNow: "Buy Now",
-                footerDesc: "頂峰之境 is a revolutionary mindfulness and focus amplification software, dedicated to merging aesthetics, technology, and breathing sciences perfectly.",
-                quote: "\"When you speak these words, you are reconstructing your reality.\"",
-                disclaimer: "* This technology is not for medical diagnosis. Consult a physician before making medical decisions.",
-                contact: "Support: ",
-                langBtn: "繁體中文"
-            }
-        };
 
+        // 整合中英文多語系動態切換機制（包含圖卡內文字變更）
         function toggleLang() {
-            currentLang = currentLang === 'zh' ? 'en' : 'zh';
-            
-            document.getElementById('langBtn').innerText = trans[currentLang].langBtn;
-            document.getElementById('hero-title').innerText = trans[currentLang].heroTitle;
-            document.getElementById('hero-desc').innerText = trans[currentLang].heroDesc;
-            document.getElementById('btn-download').innerText = trans[currentLang].btnDownload;
-            document.getElementById('btn-terms').innerText = trans[currentLang].btnTerms;
-            document.getElementById('btn-bio').innerText = trans[currentLang].btnBio;
-            document.getElementById('gallery-title').innerText = trans[currentLang].galleryTitle;
-            document.getElementById('pricing-title').innerText = trans[currentLang].pricingTitle;
-            
-            document.getElementById('plan-weekly').innerText = trans[currentLang].planWeekly;
-            document.getElementById('price-weekly').innerText = trans[currentLang].priceWeekly;
-            document.getElementById('desc-weekly').innerText = trans[currentLang].descWeekly;
-            
-            document.getElementById('plan-yearly').innerText = trans[currentLang].planYearly;
-            document.getElementById('price-yearly').innerText = trans[currentLang].priceYearly;
-            document.getElementById('desc-yearly').innerText = trans[currentLang].descYearly;
-            
-            document.getElementById('plan-lifetime').innerText = trans[currentLang].planLifetime;
-            document.getElementById('price-lifetime').innerText = trans[currentLang].priceLifetime;
-            document.getElementById('desc-lifetime').innerText = trans[currentLang].descLifetime;
-            
-            document.getElementById('footer-desc').innerText = trans[currentLang].footerDesc;
-            document.getElementById('footer-quote').innerText = trans[currentLang].quote;
-            document.getElementById('footer-disclaimer').innerText = trans[currentLang].disclaimer;
-            document.getElementById('footer-contact').innerText = trans[currentLang].contact;
+            const twElements = document.querySelectorAll('.lang-tw');
+            const enElements = document.querySelectorAll('.lang-en');
+            const btn = document.getElementById('langBtn');
+            const labels = document.querySelectorAll('.gallery-label');
 
-            // 切換有帶屬性的靜態標題文字
-            document.querySelectorAll('.lang-txt').forEach(el => {
-                let text = el.getAttribute('data-' + currentLang);
-                if (text) el.innerText = text;
-            });
-
-            // 切換藝廊標籤文字
-            document.querySelectorAll('.gallery-label').forEach(el => {
-                let text = el.getAttribute('data-' + currentLang);
-                if (text) el.innerText = text;
-            });
+            if (currentLang === 'zh') {
+                currentLang = 'en';
+                twElements.forEach(el => el.classList.add('hidden-lang'));
+                enElements.forEach(el => el.classList.remove('hidden-lang'));
+                btn.innerText = '繁體中文';
+                
+                labels.forEach(el => {
+                    if(el.getAttribute('data-en')) {
+                        el.innerText = el.getAttribute('data-en');
+                    }
+                });
+            } else {
+                currentLang = 'zh';
+                twElements.forEach(el => el.classList.remove('hidden-lang'));
+                enElements.forEach(el => el.classList.add('hidden-lang'));
+                btn.innerText = 'English';
+                
+                labels.forEach(el => {
+                    if(el.getAttribute('data-zh')) {
+                        el.innerText = el.getAttribute('data-zh');
+                    }
+                });
+            }
         }
 
-        function handleDownload(isLifetime = false) {
-            if (currentLang === 'zh') {
-                let msg = "感謝您的支持！\n\n" +
-                          "「頂峰之境」目前全面支援 iOS 系統。\n" +
-                          "請至 iPhone 的 App Store 搜尋「頂峰之境」下載安裝。";
-                if (isLifetime) {
-                    msg += "\n\n您可以直接在 App 內購買「終身授權方案」，解鎖無極限修煉體驗。";
-                } else {
-                    msg += "\n\n您可以直接在 App 內訂閱您的專屬修煉方案。";
-                }
-                alert(msg);
-            } else {
-                let msg = "Thank you for your support!\n\n" +
-                          "頂峰之境 currently fully supports iOS devices.\n" +
-                          "Please search '頂峰之境' in the iPhone App Store to download and install.";
-                if (isLifetime) {
-                    msg += "\n\nDynamic in-app purchase for the Lifetime Access plan is available to unlock absolute sanctuary.";
-                } else {
-                    msg += "\n\nIn-app subscription setup is available instantly inside the application.";
-                }
-                alert(msg);
-            }
+        // 導向 App Store 下載方法
+        function handleDownload() {
+            window.open('https://apps.apple.com/tw/app/zenith-magic/id6758757008', '_blank');
         }
     </script>
 </body>
