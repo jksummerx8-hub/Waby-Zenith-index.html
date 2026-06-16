@@ -11,111 +11,87 @@ initial-scale=1.0">
 .gradient-bg {
 background: #000000;
 }
-.glass-card {
-background: rgba(20, 20, 25, 0.65);
-backdrop-filter: blur(24px);
--webkit-backdrop-filter: blur(24px);
-border: 1px solid rgba(168, 85, 247, 0.2);
-}
-.screenshot-img {
-height: 480px;
-width: auto;
-object-fit: contain;
-border-radius: 2rem;
-}
-.content-img {
-width: 100%;
-max-width: 450px;
-height: auto;
-object-fit: cover;
-border-radius: 1.5rem;
-}
-/* 藍紫霓虹自訂捲軸 */
+.glass-card { background: rgba(255, 255, 255, 0.75);
+backdrop-filter: blur(12px); border: 1px solid rgba(168, 85, 247,
+0.15); }
+.screenshot-img { height: 480px; width: auto; object-fit:
+contain; border-radius: 2rem; }
+.content-img { width: 100%; max-width: 450px; height:
+auto; object-fit: cover; border-radius: 1.5rem; }
+/* 🔮 藍紫霓虹實體自訂捲軸 */
 .custom-scrollbar::-webkit-scrollbar { height: 10px; }
 .custom-scrollbar::-webkit-scrollbar-track { background:
-rgba(255, 255, 255, 0.05); border-radius: 9999px; }
+rgba(0, 0, 0, 0.05); border-radius: 9999px; }
 .custom-scrollbar::-webkit-scrollbar-thumb {
-background: linear-gradient(to right, #3b82f6, #8b5cf6);
+background: linear-gradient(to right, #a855f7, #6366f1);
 border-radius: 9999px;
-border: 2px solid #000000;
+border: 2px solid #ffffff;
 }
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-background: linear-gradient(to right, #2563eb, #7c3aed); }
+background: linear-gradient(to right, #9333ea, #4f46e5); }
 </style>
-</head>
-<body class="gradient-bg text-slate-200 font-sans antialiased">
+</head><body class="gradient-bg text-slate-800 font-sans antialiased">
 <header class="max-w-7xl mx-auto px-6 py-4 flex
-justify-between items-center border-b border-slate-800/80
-sticky top-0 z-50 backdrop-blur-md bg-black/40">
+justify-between items-center border-b border-slate-200/80
+sticky top-0 z-50 backdrop-blur-md bg-white/40">
 <div class="text-2xl font-bold text-transparent bg-clip-text
-bg-gradient-to-r from-blue-500 via-sky-400 to-indigo-500">
-頂峰之境
-</div>
+bg-gradient-to-r from-purple-600 to-indigo-600">Zenith
+Magic</div>
 <nav class="flex items-center space-x-6">
 <button onclick="toggleLang()" id="langBtn"
-class="border border-blue-500 text-blue-400 px-4 py-1.5
-rounded-full text-sm font-semibold hover:bg-blue-600
-hover:text-white transition">
-English
-</button>
+class="border border-purple-600 text-purple-600 px-4 py-1.5
+rounded-full text-sm font-semibold hover:bg-purple-600
+hover:text-white transition">English</button>
 <button onclick="handleDownload(false)" class="hidden
-md:block bg-gradient-to-r from-blue-600 to-indigo-600
-hover:from-blue-700 hover:to-indigo-700 text-white px-5 py-2
-rounded-full text-sm font-semibold transition shadow-md">
-App Store
-</button>
+md:block bg-gradient-to-r from-purple-600 to-indigo-600
+hover:from-purple-700 hover:to-indigo-700 text-white px-5 py-2
+rounded-full text-sm font-semibold transition shadow-md">App
+Store</button>
 </nav>
 </header>
 <section class="max-w-5xl mx-auto text-center px-6 py-20
 relative">
 <div class="absolute top-1/4 left-1/2 -translate-x-1/2
--translate-y-1/2 w-[500px] h-[500px] bg-blue-500/10
+-translate-y-1/2 w-[500px] h-[500px] bg-purple-500/10
 blur-[120px] rounded-full pointer-events-none"></div>
 <h1 id="hero-title" class="text-4xl md:text-6xl
-font-extrabold tracking-tight mb-6 text-transparent bg-clip-text
-bg-gradient-to-r from-blue-500 via-sky-400 to-indigo-500
-leading-tight">
-強大源於呼吸
-</h1>
-<p id="hero-desc" class="text-lg md:text-xl text-slate-400
-max-w-3xl mx-auto mb-10 leading-relaxed font-medium">
-結合極致工藝與動態美學，開啟身心強化的「感官聖殿」。
-呼吸練習能在幾秒鐘內「暴力」中斷負面情緒、壓力與疲勞的連鎖
-反應，讓腦袋完全清空。
-</p>
+font-extrabold tracking-tight mb-6 text-slate-900 leading-tight">
+強大源於呼吸</h1>
+<p id="hero-desc" class="text-lg md:text-xl text-slate-600
+max-w-3xl mx-auto mb-10 leading-relaxed font-medium">結合
+極致工藝與動態美學，開啟身心強化的「感官聖殿」。呼吸練習能在幾秒鐘內「暴力」中斷負面情緒、壓力與疲勞的連鎖反應，讓腦袋完
+全清空。</p>
 <div class="flex flex-col sm:flex-row justify-center
 items-center gap-4 mb-12">
 <button onclick="handleDownload(false)"
 id="btn-download" class="w-full sm:w-auto bg-gradient-to-r
-from-blue-600 to-indigo-600 hover:from-blue-700
-hover:to-indigo-700 text-white font-bold px-8 py-4 rounded-2xl
-shadow-lg shadow-blue-500/20 transition transform
-hover:-translate-y-1">
-立即下載 iOS 版
-</button>
+from-purple-600 to-fuchsia-600 hover:from-purple-700
+hover:to-fuchsia-700 text-white font-bold px-8 py-4 rounded-2xl
+shadow-lg shadow-purple-500/20 transition transform
+hover:-translate-y-1">立即下載 iOS 版</button>
 <a
 href="https://raw.githubusercontent.com/jksummerx8-hub/Term
 s-index.html-/refs/heads/main/Terms" target="
 blank"
 _
-id="btn-terms" class="w-full sm:w-auto bg-slate-900
-text-slate-300 font-semibold px-8 py-4 rounded-2xl border
-border-slate-800 transition shadow-sm text-center
-hover:bg-slate-800">
-服務條款
-</a>
+id="btn-terms" class="w-full sm:w-auto bg-gradient-to-r
+from-purple-50 to-indigo-50 hover:from-purple-100
+hover:to-indigo-100 text-purple-700 font-semibold px-8 py-4
+rounded-2xl border border-purple-200/60 transition shadow-sm
+text-center">服務條款</a>
 <a
 href="https://jksummerx8-hub.github.io/Facial-Scan-and-Biomet
 ric-Data-Privacy-Statement/" target="
 blank" id="btn-bio"
 _
-class="w-full sm:w-auto bg-slate-900 text-slate-300
-font-semibold px-8 py-4 rounded-2xl border border-slate-800
-transition shadow-sm text-center hover:bg-slate-800">
-臉部技術與生物特徵聲明
-</a>
+class="w-full sm:w-auto bg-gradient-to-r from-purple-50
+to-indigo-50 hover:from-purple-100 hover:to-indigo-100
+text-purple-700 font-semibold px-8 py-4 rounded-2xl border
+border-purple-200/60 transition shadow-sm text-center">臉部技
+術與生物特徵聲明</a>
 </div>
-<div id="gallery-title" class="text-center text-2xl font-bold
+</section>
+<section class="py-6 px-4 max-w-7xl mx-auto"><div id="gallery-title" class="text-center text-2xl font-bold
 mb-8 text-purple-600">App 實機介面展示 | Interface
 Gallery</div>
 <div class="flex overflow-x-auto gap-6 pb-6 px-4
@@ -133,7 +109,8 @@ data-en="Awareness System: Mirror of the Soul">察覺系統：映
 </div>
 <div class="flex-none text-center mb-4">
 <img
-src="https://raw.githubusercontent.com/jksummerx8-hub/Waby-Zenith-index.html/refs/heads/main/%E5%AE%87%E5%AE%99%201.jpg%2012-36-59-713.jpg" class="screenshot-img
+src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith
+-Magic/refs/heads/main/Zenith.png" class="screenshot-img
 shadow-xl border border-slate-200/60" alt="Zenith">
 <p class="mt-4 font-semibold text-slate-700
 gallery-label" data-zh="頂峰之境 核心介面" data-en="Zenith
@@ -145,8 +122,7 @@ src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith
 -Magic/refs/heads/main/Simulator%20Screenshot%20-%20iPh
 one%2017%20Pro%20-%202026-05-31%20at%2002.07.31.pn
 g" class="screenshot-img shadow-xl border
-border-slate-200/60" alt="Screenshot"><p class="mt-4
-font-semibold text-slate-700
+border-slate-200/60" alt="Screenshot"><p class="mt-4 font-semibold text-slate-700
 gallery-label" data-zh="健身計時器" data-en="Fitness Timer">健
 身計時器</p>
 </div>
@@ -178,8 +154,7 @@ src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith
 -Magic/refs/heads/main/Simulator%20Screenshot%20-%20iPh
 one%2017%20Pro%20-%202026-05-31%20at%2002.05.24.pn
 g" class="screenshot-img shadow-xl border
-border-slate-200/60" alt="Screenshot"><p class="mt-4
-font-semibold text-slate-700
+border-slate-200/60" alt="Screenshot"><p class="mt-4 font-semibold text-slate-700
 gallery-label" data-zh="健身流倒數計時器" data-en="Fitness
 Flow Countdown Timer">健身流倒數計時器</p>
 </div>
@@ -243,8 +218,7 @@ Custom Equalizer (EQ)">7段自訂等化器(EQ)</p>
 <h2 class="text-3xl font-bold text-purple-600 mb-2
 lang-txt" data-zh="
 一
-、 核心特色：科技與美學的結晶" data-en="I.Core Features:
-Crystallization of Tech & Aesthetics">一
+、 核心特色：科技與美學的結晶" data-en="I.Core Features: Crystallization of Tech & Aesthetics">一
 、 核心
 特色：科技與美學的結晶</h2>
 <div class="w-20 h-1 bg-gradient-to-r from-purple-600
@@ -279,9 +253,7 @@ past... Zenith is not just a simple alarm or relaxation app. We
 know that wind-down relaxation itself is a skill that needs
 practice. Zenith is a comprehensive, personalized body-mind
 reboot engine. We seamlessly integrate audio healing,
-breathing practices, meditation, and fitness flows to help
-youreconnect with your brain, master the art of letting go, and
-clear
+breathing practices, meditation, and fitness flows to help youreconnect with your brain, master the art of letting go, and clear
 your head through targeted breathwork.
 ">
 每晚躺在床上，閉上眼睛，腦海中卻像放電影一樣不
@@ -350,8 +322,7 @@ dynamic depth effects to create a highly modern 'Digital Zen'
 </div>
 <div class="glass-card rounded-2xl p-6 shadow-sm
 hover:shadow-md transition">
-<div class="text-purple-600 text-2xl mb-3">📐</div><h4
-class="text-lg font-bold mb-2 lang-txt" data-zh="
+<div class="text-purple-600 text-2xl mb-3">📐</div><h4 class="text-lg font-bold mb-2 lang-txt" data-zh="
 定製貝茲曲線動畫" data-en="Custom Bézier Animation">定製貝
 茲曲線動畫</h4>
 <p class="text-sm text-slate-600 leading-relaxed
@@ -450,8 +421,7 @@ lang-txt" data-zh="伴侶見面時" data-en="Meeting Partners">伴
 <span class="bg-purple-50 text-purple-700 px-4 py-2
 rounded-full text-sm font-medium border border-purple-200/40
 lang-txt" data-zh="深層放鬆" data-en="Deep Relaxation">深層
-放鬆</span><span class="bg-purple-50 text-purple-700 px-4
-py-2
+放鬆</span><span class="bg-purple-50 text-purple-700 px-4 py-2
 rounded-full text-sm font-medium border border-purple-200/40
 lang-txt" data-zh="風暴後的寧靜" data-en="Calm After Storm">
 風暴後的寧靜</span>
@@ -548,8 +518,7 @@ wind, vintage shops).
 data-zh="3. 七段自訂等化器" data-en="3. 7-Band Custom
 EQ">3. 七段自訂等化器</h3>
 <p class="text-xs text-slate-600 leading-relaxed
-lang-txt" data-zh="高精密微調聲音頻率，直到它完美貼合你的大
-腦波動。
+lang-txt" data-zh="高精密微調聲音頻率，直到它完美貼合你的大腦波動。
 " data-en="Finely recalibrate audio hertz and sound
 frequencies until they lock perfectly with your brainwave
 patterns.
@@ -586,8 +555,7 @@ routines.
 ">從「壓力清理」到「吵雜中的平靜」，協助建立每日的正念
 習慣。</p>
 </div>
-<div class="p-5 glass-card rounded-2xl"><h3 class="font-bold
-text-purple-900 mb-2 lang-txt"
+<div class="p-5 glass-card rounded-2xl"><h3 class="font-bold text-purple-900 mb-2 lang-txt"
 data-zh="6. 健身流倒數計時器" data-en="6. Fitness Flow
 Timer">6. 健身流倒數計時器</h3>
 <p class="text-xs text-slate-600 leading-relaxed
@@ -625,8 +593,7 @@ wind-down tracking.
 ">從不同精神維度獲取宏觀建議，提供最個性
 化的放鬆指引。</p>
 </div>
-<div class="p-5 glass-card rounded-2xl"><h3 class="font-bold
-text-purple-900 mb-2 lang-txt"
+<div class="p-5 glass-card rounded-2xl"><h3 class="font-bold text-purple-900 mb-2 lang-txt"
 data-zh="9. 各國語言翻譯" data-en="9. Seamless
 Multi-Language">9. 各國語言翻譯</h3>
 <p class="text-xs text-slate-600 leading-relaxed
@@ -660,8 +627,7 @@ src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith
 %87%E8%8F%AF%E4%BA%AB%E5%8F%97%E8%97%9D
 %E8%A1%93%E7%9A%84%E5%8A%9B%E9%87%8F.png">
 <p class="text-xs text-slate-400 italic text-center
-lang-txt" data-zh="功能合一：體驗呼吸昇華藝術的力量
-"data-en="All-in-One: Experience the art of breath
+lang-txt" data-zh="功能合一：體驗呼吸昇華藝術的力量"data-en="All-in-One: Experience the art of breath
 sublimation.
 ">功能合一：體驗呼吸昇華藝術的力量</p>
 </div>
@@ -695,8 +661,7 @@ ground yourself:">
 class="text-purple-600 font-bold">●</span> <p
 class="leading-relaxed"><strong class="lang-txt" data-zh="即時
 感應：
-" data-en="Real-Time Sensing: ">即時感應：</strong><span
-class="lang-txt" data-zh="透過鏡頭觀察面部細
+" data-en="Real-Time Sensing: ">即時感應：</strong><span class="lang-txt" data-zh="透過鏡頭觀察面部細
 微的波長，捕捉你當下的心情氛圍。
 " data-en="Observes subtle
 facial color modulations via lens to extract immediate mood
@@ -736,8 +701,7 @@ recalibration.
 <div class="flex justify-center">
 <img
 src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith
--Magic/refs/heads/main/%E5%AF%9F%E8%A6%BA%E7%B3
-%BB%E7%B5%B1.png" class="content-img shadow-2xl border
+-Magic/refs/heads/main/%E5%AF%9F%E8%A6%BA%E7%B3%BB%E7%B5%B1.png" class="content-img shadow-2xl border
 border-slate-200" alt="察覺系統">
 </div>
 </div>
@@ -767,9 +731,7 @@ rhythm. Zenith's mission is transforming dry breathing drills into
 a visual and auditory masterpiece. When training becomes a
 sheer joy, transformation evolves implicitly. Through deep,
 cinematic 'Stained Glass' visual artistry, we build an
-architecture of strength in the digital realm. Every
-inhalationaccumulates power; every exhalation expands limits.
-A
+architecture of strength in the digital realm. Every inhalationaccumulates power; every exhalation expands limits. A
 premium stress-relief artwork.
 ">
 「變強」不只是體能的堆疊，更是對內在節奏的絕對掌控。
@@ -788,11 +750,9 @@ src="https://raw.githubusercontent.com/jksummerx8-hub/Zenith
 </div>
 </section>
 <section class="py-16 px-6 max-w-7xl mx-auto border-t
-border-slate-900">
+border-slate-200/80">
 <h2 id="pricing-title" class="text-3xl font-bold text-center
-mb-12 text-transparent bg-clip-text bg-gradient-to-r
-from-blue-400 to-sky-400">
-定價方案 | Pricing Plans</h2>
+mb-12 text-purple-600">定價方案 | Pricing Plans</h2>
 <div class="flex flex-wrap justify-center items-stretch
 gap-6">
 <div class="glass-card rounded-3xl p-6 flex flex-col
@@ -831,8 +791,7 @@ lang-txt" data-zh="3天免費試用" data-en="3-Day Free Trial">3
 天免費試用</div>
 <h3 class="text-base font-bold text-slate-800
 lang-txt" data-zh="月費方案（自動續訂）" data-en="Monthly Plan
-(Auto-renewal)">月費方案（自動續訂）</h3><div class="text-2xl
-font-extrabold text-purple-600
+(Auto-renewal)">月費方案（自動續訂）</h3><div class="text-2xl font-extrabold text-purple-600
 mt-2">$12.99 <span class="text-xs font-normal
 text-slate-400">USD</span></div>
 <div class="text-xl font-bold text-slate-500
@@ -865,8 +824,7 @@ lang-txt" data-zh="半年方案（自動續訂）" data-en="6-Month Plan
 (Auto-renewal)">半年方案（自動續訂）</h3>
 <div class="text-2xl font-extrabold text-purple-600
 mt-2">$44.99 <span class="text-xs font-normal
-text-slate-400">USD</span></div><div class="text-xl font-bold
-text-slate-500
+text-slate-400">USD</span></div><div class="text-xl font-bold text-slate-500
 mb-4">NT$ 1490</div>
 <p class="text-xs text-slate-500 leading-relaxed
 lang-txt" data-zh="包含 7 天免費試用，隨後自動續訂。高性價比
@@ -899,8 +857,7 @@ lang-txt" data-zh="年費方案（自動續訂）" data-en="Yearly Plan
 (Auto-renewal)">年費方案（自動續訂）</h3>
 <div class="text-2xl font-extrabold text-purple-600
 mt-2">$70.00 <span class="text-xs font-normal
-text-slate-400">USD</span></div><div class="text-xl font-bold
-text-slate-500
+text-slate-400">USD</span></div><div class="text-xl font-bold text-slate-500
 mb-4">NT$ 2290</div>
 <p class="text-xs text-purple-950 font-medium
 leading-relaxed lang-txt" data-zh="包含 7 天免費試用，隨後自動
@@ -963,73 +920,180 @@ data-zh="取得極致通行證" data-en="Get Ultimate Pass">取得極
 </div>
 </div>
 </section>
-<footer class="bg-black text-slate-500 text-xs py-12 border-t
-border-slate-900">
-<div class="max-w-6xl mx-auto px-6 flex flex-col
+<footer class="bg-slate-50 text-slate-500 text-xs py-12
+border-t border-slate-200"><div class="max-w-6xl mx-auto px-6 flex flex-col
 md:flex-row justify-between items-center gap-8 text-center
 md:text-left">
 <div>
+<p id="footer-quote" class="mb-2 text-slate-600
+italic">「當你讀出 these 文字，你便是在重新建構你的現實。」</p>
 <p>&copy; 2026 頂峰之境. All rights reserved.
-Developers: Hsu, Hao-Lun</p>
-<p class="mt-2 text-slate-600" id="footer-disclaimer">
-※ 本技術非醫療檢測，數據僅供參考。在使用及做出
-醫療決定前，請諮詢專業醫師。
-</p>
+Developers:Hsu,Hao-Lun</p>
+<p class="mt-2 text-slate-400"
+id="footer-disclaimer">※ 本技術非醫療檢測，數據僅供參考。在
+使用及做出醫療決定前，請諮詢專業醫師。</p>
 </div>
 <div class="flex flex-col gap-3 md:text-right">
-<p id="footer-contact">
-客服聯絡：<a href="mailto:xrknight7@yahoo.com"
-class="text-blue-400 hover:underline
-font-medium">xrknight7@yahoo.com</a>
-</p>
+<p id="footer-contact"><span id="contact-label">客服
+聯絡：</span><a href="mailto:xrknight7@yahoo.com"
+class="text-purple-600 hover:underline
+font-medium">xrknight7@yahoo.com</a></p>
+<div class="flex flex-wrap justify-center md:justify-end
+gap-4">
+<a
+href="https://jksummerx8-hub.github.io/Privacy-Policy-
+.md/"
+target="
+blank" class="text-slate-500 hover:text-slate-800
+_
+underline">Privacy Policy</a>
+<a
+href="https://raw.githubusercontent.com/jksummerx8-hub/Term
+s-index.html-/refs/heads/main/Terms" target="
+blank"
+_
+class="text-slate-500 hover:text-slate-800
+underline">Terms</a>
+<a
+href="https://jksummerx8-hub.github.io/Facial-Scan-and-Biomet
+ric-Data-Privacy-Statement/" target="
+blank"
+_
+class="text-slate-500 hover:text-slate-800 underline">Biometric
+Statement</a></div>
 </div>
 </div>
 </footer>
 <script>
-// 語言狀態管理
 let currentLang = 'zh';
-// 核心彈出視窗函數
+const trans = {
+zh: {
+title: "強大源於呼吸"
+,
+desc: "結合極致工藝與動態美學，開啟身心強化的「感
+官聖殿」。呼吸練習能在幾秒鐘內「暴力」中斷負面情緒、壓力與疲
+勞的連鎖反應，讓腦袋完全清空。
+"
+,
+download: "立即下載 iOS 版"
+,
+terms: "服務條款"
+,
+bio: "臉部技術與生物特徵聲明"
+,
+quote: "「當你讀出 these 文字，你便是在重新建構你的
+現實。」"
+,
+disclaimer: "※ 本技術非醫療檢測，數據僅供參考。在使
+用及做出醫療決定前，請諮詢專業醫師。
+"
+,
+contact: "客服聯絡：
+"
+,
+langBtn: "English"
+},
+en: {
+title: "Strength Originates from Breath"
+,
+desc: "Combining exquisite craftsmanship with
+dynamic aesthetics to unlock the 'Sensory Sanctuary' for body
+and mind elevation. Breathing exercises forcefully interrupt the
+chain reaction of negative emotions, stress, and fatigue in
+seconds, completely clearing your mind.
+"
+,
+download: "Download on App Store"
+,
+terms: "Terms of Service"
+,
+bio: "Biometric Data Privacy Statement"
+,quote: "\"When you speak these words, you are
+reconstructing your reality.\""
+,
+disclaimer: "* This technology is not for medical
+diagnosis. Consult a physician before making medical
+decisions.
+"
+,
+contact: "Support: "
+,
+langBtn: "繁體中文"
+}
+};
+// 安全語系切換機制
+function toggleLang() {
+currentLang = currentLang === 'zh' ? 'en' : 'zh';
+const l = trans[currentLang];
+if (document.getElementById('hero-title'))
+document.getElementById('hero-title').innerText = l.title;
+if (document.getElementById('hero-desc'))
+document.getElementById('hero-desc').innerText = l.desc;
+if (document.getElementById('btn-download'))
+document.getElementById('btn-download').innerText =
+l.download;
+if (document.getElementById('footer-quote'))
+document.getElementById('footer-quote').innerText = l.quote;
+if (document.getElementById('footer-disclaimer'))
+document.getElementById('footer-disclaimer').innerText =
+l.disclaimer;
+if (document.getElementById('contact-label'))
+document.getElementById('contact-label').innerText = l.contact;
+if (document.getElementById('langBtn'))
+document.getElementById('langBtn').innerText = l.langBtn;
+if (document.getElementById('gallery-title')) {document.getElementById('gallery-title').innerText =
+currentLang === 'zh' ? "App 實機介面展示 | Interface Gallery" :
+"App Interface Gallery | 實機介面展示";
+}
+if (document.getElementById('pricing-title')) {
+document.getElementById('pricing-title').innerText =
+currentLang === 'zh' ? "定價方案 | Pricing Plans" : "Pricing
+Plans | 定價方案";
+}
+// 大量元素標籤同步翻譯
+document.querySelectorAll('
+.lang-txt,
+.gallery-label').forEach(label => {
+const targetText = label.getAttribute('data-
+' +
+currentLang);
+if (targetText !== null) {
+label.innerText = targetText;
+}
+});
+}
+// 分流控制彈窗行為 (相容中英文顯示)
 function handleDownload(isLifetime = false) {
 if (currentLang === 'zh') {
 let msg = "感謝您的支持！\n\n" +
-"「頂峰之境」目前全面支援 iOS 系統。\n" +
-"請至 iPhone 的 App Store 搜尋「頂峰之境」下載
-應用程式，即可於 App 內完成訂閱與開通高級會員服務。\n";
+"頂峰之境 目前全面支援 iOS 系統。\n" +
+"請至 iPhone 的 App Store 搜尋「頂峰之境」
+下載應用程式，即可於 App 內完成訂閱與開通高級會員服務。
+";
 if (isLifetime) {
-msg += "\n※ 極致通行證：方案保障使用期限為自購
-買日起算 1 年。期滿後，將以開發者贈送方式，提供無限制延長使
-用權益，用戶無需再次付費。\n";
-}
+msg += "\n\n※ 極致通行證：方案保障使用期限為自
+購買日起算 1 年。期滿後，將以開發者贈送方式，提供無限制延長
+使用權益，用戶無需再次付費。
+";}
 alert(msg);
 } else {
 let msg = "Thank you for your support!\n\n" +
-"\"Zenith\" is fully compatible with iOS.\n" +
-"Please search '頂峰之境' in the App Store on
-your iPhone to download and complete your subscription inside
-the App.
+"頂峰之境 is fully compatible with iOS.
+Please search for '頂峰之境' on the iPhone App Store to
+download the app, where you can subscribe and unlock
+premium features.
 ";
 if (isLifetime) {
 msg += "\n\n*Ultimate Pass: The plan guarantees
-a service period of 1 year from the purchase date. Afterward,
-unlimited access will be granted as a complimentary gift from
-the developer.
+a service period of 1 year from the date of purchase. After this
+period, unlimited access will be provided extended as a
+complimentary gift from the developer, with no additional fees
+required.
 ";
 }
 alert(msg);
 }
-}
-// 語系切換
-function toggleLang() {
-currentLang = currentLang === 'zh' ? 'en' : 'zh';
-const langBtn = document.getElementById('langBtn');
-if (langBtn) {
-langBtn.innerText = currentLang === 'zh' ? 'English' : '
-繁體中文';
-}
-alert(currentLang === 'zh' ? "網頁語系已變更：繁體中文"
-: "Language changed to English");
 }
 </script>
 </body>
 </html>
-
