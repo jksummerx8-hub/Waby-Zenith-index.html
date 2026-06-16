@@ -30,7 +30,7 @@ border: 2px solid #ffffff;
 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
 background: linear-gradient(to right, #9333ea, #4f46e5); }
 </style>
-</head><body class="gradient-bg text-slate-800 font-sans antialiased">
+</head><body class="gradient-bg text-white font-sans antialiased">
 <header class="max-w-7xl mx-auto px-6 py-4 flex
 justify-between items-center border-b border-slate-200/80
 sticky top-0 z-50 backdrop-blur-md bg-white/40">
@@ -56,6 +56,41 @@ relative">
 blur-[120px] rounded-full pointer-events-none"></div>
 <h1 id="hero-title" class="text-4xl md:text-6xl
 font-extrabold tracking-tight mb-6 text-slate-900 leading-tight">
+<script>
+    // 語言控制變數 (預設中文)
+    let currentLang = 'zh';
+
+    // 處理所有下載與訂閱方案點擊的彈出視窗
+    function handleDownload(isLifetime = false) {
+        if (currentLang === 'zh') {
+            let msg = "感謝您的支持！\n\n" +
+                      "「頂峰之境」目前全面支援 iOS 系統。\n" +
+                      "請至 iPhone 的 App Store 搜尋「頂峰之境」下載應用程式，即可於 App 內完成訂閱與開通高級會員服務。\n";
+            
+            if (isLifetime) {
+                msg += "\n※ 極致通行證：方案保障使用期限為自購買日起算 1 年。期滿後，將以開發者贈送方式，提供無限制延長使用權益，用戶無需再次付費。\n";
+            }
+            alert(msg);
+        } else {
+            let msg = "Thank you for your support!\n\n" +
+                      "頂峰之境 is fully compatible with iOS.\n" +
+                      "Please search '頂峰之境' in the App Store to download and subscribe inside the App.";
+            alert(msg);
+        }
+    }
+
+    // 如果網頁內有切換語言的按鈕，確保它不會報錯
+    function toggleLang() {
+        currentLang = currentLang === 'zh' ? 'en' : 'zh';
+        let btn = document.getElementById('langBtn');
+        if (btn) {
+            btn.innerText = currentLang === 'zh' ? 'English' : '中文';
+        }
+        // 這裡可以依需求加入切換網頁文字語言的邏輯
+        alert(currentLang === 'zh' ? "已切換至中文" : "Switched to English");
+    }
+</script>
+
 強大源於呼吸</h1>
 <p id="hero-desc" class="text-lg md:text-xl text-slate-600
 max-w-3xl mx-auto mb-10 leading-relaxed font-medium">結合
