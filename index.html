@@ -6,127 +6,99 @@
     <title>頂峰之境 - 官方網站</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* 深色毛玻璃背景 */
-        body { 
-            background-color: #000000;
-            color: #ffffff;
-        }
+        /* 全局深色設定 */
+        body { background-color: #000000; color: #ffffff; font-family: sans-serif; }
+        
+        /* 黑色毛玻璃卡片 */
         .glass-card { 
             background: rgba(255, 255, 255, 0.05); 
             backdrop-filter: blur(15px); 
             border: 1px solid rgba(255, 255, 255, 0.1); 
         }
-        /* 漸層藍色文字 */
+        
+        /* 漸層藍色標題 */
         .text-gradient {
             background: linear-gradient(to right, #60a5fa, #3b82f6);
             -webkit-background-clip: text;
             background-clip: text;
             color: transparent;
         }
+
+        /* 語系切換邏輯 */
+        .lang-txt[data-en] { display: none; }
+        .lang-en .lang-txt[data-zh] { display: none; }
+        .lang-en .lang-txt[data-en] { display: inline-block; }
     </style>
 </head>
-<body class="min-h-screen flex flex-col justify-between selection:bg-blue-900">
+<body class="antialiased">
 
     <!-- 導覽列 -->
-    <header class="sticky top-0 z-40 w-full bg-black/80 backdrop-blur-md border-b border-white/10">
-        <div class="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
-            <div class="flex items-center space-x-3">
-                <div class="w-9 h-9 bg-gradient-to-tr from-blue-500 to-blue-700 rounded-xl flex items-center justify-center text-white font-black text-xl shadow-md">頂</div>
-                <span class="font-bold text-xl tracking-tight text-white">頂峰之境</span>
-            </div>
-            
-            <nav class="flex items-center space-x-6">
-                <a href="#features" class="text-sm font-medium text-slate-300 hover:text-blue-400 transition">功能特色</a>
-                <a href="#pricing" class="text-sm font-medium text-slate-300 hover:text-blue-400 transition">定價方案</a>
-                <button id="langToggle" class="text-sm font-semibold px-3 py-1.5 rounded-full border border-white/20 hover:border-blue-500 transition">English</button>
-            </nav>
-        </div>
+    <header class="sticky top-0 z-50 bg-black/80 backdrop-blur-md border-b border-white/10 py-4 px-6 flex justify-between items-center max-w-7xl mx-auto">
+        <div class="text-2xl font-bold text-gradient">頂峰之境</div>
+        <nav class="flex items-center space-x-6">
+            <button onclick="toggleLang()" id="langBtn" class="border border-blue-500 text-blue-400 px-4 py-1.5 rounded-full text-sm font-semibold hover:bg-blue-600 hover:text-white transition">English</button>
+            <button onclick="handleDownload()" class="bg-gradient-to-r from-blue-600 to-blue-800 text-white px-5 py-2 rounded-full text-sm font-semibold transition">App Store</button>
+        </nav>
     </header>
 
-    <main class="flex-grow">
-        <!-- Hero 主視覺 -->
-        <section class="max-w-6xl mx-auto px-6 pt-16 pb-20 text-center flex flex-col items-center">
-            <h1 class="text-4xl md:text-5xl font-extrabold tracking-tight text-gradient max-w-3xl leading-tight mb-6">
-                尋找內心的平靜，開啟頂峰之境冥想沉浸之旅
-            </h1>
-            <p class="text-lg text-slate-300 max-w-2xl mb-10 leading-relaxed">
-                專為極致感官體驗打造的擬真大自然氛圍空間。結合精緻的電影級動態美學與ASMR立體聲學，帶您隨時隨地遠離塵囂。
-            </p>
-            
-            <div class="flex flex-col sm:flex-row items-center justify-center gap-4 w-full max-w-md">
-                <button onclick="openDownloadModal(false)" class="w-full sm:w-auto px-8 py-4 bg-blue-600 text-white font-semibold rounded-2xl hover:bg-blue-500 transition">立即下載 iOS 版</button>
-            </div>
-        </section>
-
-        <!-- 功能特色 -->
-        <section id="features" class="max-w-6xl mx-auto px-6 py-12 border-t border-white/10">
-            <h2 class="text-2xl md:text-3xl font-bold text-center text-white mb-12">精心雕琢的極致細節</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass-card p-8 rounded-3xl">
-                    <h3 class="font-bold text-lg mb-3 text-blue-400">電影級光影美學</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed">動態霓虹旅店、深海巨浪、高山冰雪，每一幀都是震撼視覺的動態藝術品。</p>
-                </div>
-                <div class="glass-card p-8 rounded-3xl">
-                    <h3 class="font-bold text-lg mb-3 text-blue-400">7頻段立體音響</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed">內建專業音響級等化器，完美調配白噪音、雨聲、浪聲與環境細節音效。</p>
-                </div>
-                <div class="glass-card p-8 rounded-3xl">
-                    <h3 class="font-bold text-lg mb-3 text-blue-400">陀螺儀空間視差</h3>
-                    <p class="text-slate-300 text-sm leading-relaxed">隨手機傾斜角度產生細微的景深移動，帶給您不可思議的 3D 沉浸包覆感。</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- 定價方案 -->
-        <section id="pricing" class="max-w-6xl mx-auto px-6 py-20 border-t border-white/10">
-            <h2 class="text-3xl font-bold text-center text-white mb-16">選擇您的靜心方案</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass-card p-8 rounded-3xl">
-                    <h3 class="font-bold text-xl mb-4 text-white">專業版月度訂閱（自動續訂）</h3>
-                    <p class="text-slate-300 text-sm mb-6">彈性無負擔的最佳起步選擇。</p>
-                    <button onclick="openDownloadModal(false)" class="w-full py-3 bg-white/10 text-white font-semibold rounded-xl hover:bg-white/20 transition">立即開通</button>
-                </div>
-                <div class="glass-card p-8 rounded-3xl border-blue-500/50">
-                    <h3 class="font-bold text-xl mb-4 text-white">專業版年度訂閱（自動續訂）</h3>
-                    <p class="text-slate-300 text-sm mb-6">每日僅需不到3元，年度最划算方案。</p>
-                    <button onclick="openDownloadModal(false)" class="w-full py-3 bg-blue-600 text-white font-semibold rounded-xl hover:bg-blue-500 transition">立即開通</button>
-                </div>
-                <div class="glass-card p-8 rounded-3xl bg-blue-900/20">
-                    <h3 class="font-bold text-xl mb-4 text-white">極致通行證</h3>
-                    <p class="text-slate-300 text-sm mb-6">一次買斷，終身享有所有未來更新。</p>
-                    <button onclick="openDownloadModal(true)" class="w-full py-3 bg-white text-blue-900 font-bold rounded-xl hover:bg-slate-200 transition">一次擁有</button>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- 彈出視窗 -->
-    <div id="downloadModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm opacity-0 pointer-events-none transition-opacity">
-        <div class="glass-card bg-black max-w-md w-full rounded-3xl p-8 shadow-2xl relative">
-            <button onclick="closeDownloadModal()" class="absolute top-5 right-5 text-white/50 hover:text-white text-xl font-bold">&times;</button>
-            <h4 class="text-xl font-bold text-white mb-4">下載與訂閱說明</h4>
-            <p id="modalBody" class="text-sm text-slate-300 leading-relaxed mb-6"></p>
-            <button onclick="closeDownloadModal()" class="w-full py-3 bg-blue-600 text-white rounded-xl">我知道了</button>
-        </div>
-    </div>
-
-    <!-- 頁尾 -->
-    <footer class="w-full bg-black border-t border-white/10 py-8 text-center px-6">
-        <p class="text-xs text-slate-500">
-            © 2026 頂峰之境. All rights reserved. Developers:Hsu,Hao-Lun;
+    <section class="max-w-5xl mx-auto text-center px-6 py-20">
+        <h1 class="text-4xl md:text-6xl font-extrabold tracking-tight mb-6 text-gradient">強大源於呼吸</h1>
+        <p class="text-lg md:text-xl text-white max-w-3xl mx-auto mb-10 leading-relaxed">
+            結合極致工藝與動態美學，開啟身心強化的「感官聖殿」。頂峰之境幫助您建立與大腦的連結，掌握放鬆的能力。
         </p>
+        <div class="flex flex-col sm:flex-row justify-center items-center gap-4">
+            <button onclick="handleDownload()" class="bg-gradient-to-r from-blue-600 to-blue-800 text-white font-bold px-8 py-4 rounded-2xl transition hover:opacity-90">立即下載 iOS 版</button>
+        </div>
+    </section>
+
+    <!-- 定價方案區 (已加入自動續訂字樣) -->
+    <section class="py-16 px-6 max-w-7xl mx-auto border-t border-white/10">
+        <h2 class="text-3xl font-bold text-center mb-12 text-blue-400">定價方案</h2>
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <!-- 方案 1 -->
+            <div class="glass-card rounded-3xl p-6">
+                <h3 class="font-bold text-white">週訂閱（自動續訂）</h3>
+                <div class="text-2xl font-extrabold text-blue-400 my-4">NT$ 150</div>
+                <button onclick="handleDownload()" class="w-full bg-blue-600 text-white py-2 rounded-xl">立即訂閱</button>
+            </div>
+
+            <!-- 方案 2 -->
+            <div class="glass-card rounded-3xl p-6">
+                <h3 class="font-bold text-white">月費方案（自動續訂）</h3>
+                <div class="text-2xl font-extrabold text-blue-400 my-4">NT$ 390</div>
+                <button onclick="handleDownload()" class="w-full bg-blue-600 text-white py-2 rounded-xl">立即訂閱</button>
+            </div>
+
+            <!-- 方案 3 -->
+            <div class="glass-card rounded-3xl p-6">
+                <h3 class="font-bold text-white">半年方案（自動續訂）</h3>
+                <div class="text-2xl font-extrabold text-blue-400 my-4">NT$ 1490</div>
+                <button onclick="handleDownload()" class="w-full bg-blue-600 text-white py-2 rounded-xl">立即訂閱</button>
+            </div>
+
+            <!-- 極致通行證 (無自動續訂) -->
+            <div class="glass-card rounded-3xl p-6 border-blue-500">
+                <h3 class="font-bold text-blue-400">極致通行證</h3>
+                <div class="text-2xl font-extrabold text-white my-4">NT$ 2990</div>
+                <button onclick="handleDownload()" class="w-full bg-white text-black py-2 rounded-xl font-bold">立即擁有</button>
+            </div>
+
+        </div>
+    </section>
+
+    <footer class="text-center py-10 text-slate-500 text-sm">
+        © 2026 頂峰之境. All rights reserved. Developers:Hsu,Hao-Lun;
     </footer>
 
     <script>
-        const modalOverlay = document.getElementById('downloadModal');
-        const modalBody = document.getElementById('modalBody');
-
-        function openDownloadModal(isLifetime) {
-            modalBody.innerText = isLifetime ? "頂峰之境支援 iOS。極致通行證為終身方案，無需重複扣款。" : "頂峰之境支援 iOS，請至 App Store 下載並於 App 內訂閱（含自動續訂）。";
-            modalOverlay.classList.remove('opacity-0', 'pointer-events-none');
+        function toggleLang() {
+            document.body.classList.toggle('lang-en');
+            const btn = document.getElementById('langBtn');
+            btn.innerText = document.body.classList.contains('lang-en') ? '中文' : 'English';
         }
-        function closeDownloadModal() {
-            modalOverlay.classList.add('opacity-0', 'pointer-events-none');
+        function handleDownload() {
+            alert('頂峰之境目前支援 iOS，請前往 App Store 下載。');
         }
     </script>
 </body>
